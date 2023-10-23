@@ -208,3 +208,97 @@ To access the website go to properties of bucket and in static website hosting s
 Here is the website 
 
 ![Website](Assets/30.png)
+
+## Versioning Objects in S3 
+
+**What is versioning?**  
+We can enable versioning in S3 so that we have multiple versions of an object within S3 bucket. It is a way of doing versio control with your object or files. 
+
+**Advantages Of versioning**
+- All Versions :- All versions of an object are stored in S3. This includes all writes and even if you delete an object.
+- Backup :- Can be a great backup tool
+- Cannot be Disbled :- Once enabled, versioning cannot be disabled only suspended. 
+- Lifecycle Rules :- Can be integrated with lifecycle rules.
+- Supports MFA :- Can Support multi-factor Authentication. 
+
+**Steps to enable Versioning**  
+Step 1 :- Go to Bucket and click properties  
+Step 2 :- In bucket versioning Section, click Edit  
+Step 3 :- Click on enable and save changes.  
+
+Now when we will add a object in file with same name it will be versioned. 
+
+
+**What happen When We delete the latest version of Object**  
+When latest version is deleted It will not be shown directly in the bucket, but when we click on List version (toggle button) We will see the every version even deleted one.
+
+There will be a delete marker in the object which is deleted. When we delete that delete marker the object will be restored. 
+
+## S3 Storage Classes 
+
+1. S3 Standard 
+- High Availability and Durability
+    * Data is stoored redundantly across multiple devices in multiple facilities (>=3 AZs)
+    * 99.99% Availability 
+    * 99.999999999% durability (11 9's)
+- Designed for Frequent Access
+    * Perfect for frequently accessed data. 
+- Suitable for Most Workloads
+    * The default storae class.
+    * Use cases include websites, content distribution, mobile and gaming applications, and big data analytics. 
+
+2. S3 Standard-Infrequent Access (S3 Standard-IA)
+- Designed for Infrequently Accessed Data
+- Rapid Access :- Used for data that is accessed less frequently but requires rapid access when needed. 
+- We Pay to access the Data :- There is low per-GB storage price and a per-GB retrieval fee. 
+- Use cases :- Great for long-term storage, backups, and as a data store for disaster recovery files.
+- Comes with :  
+    * 99.9% Availability 
+    * 99.999999999% (11 9's) Durability
+
+3. S3 One Zone-Infrequent Access  
+- It is like S3 standard-IA, but data is sstored redundantly within a single AZ.  
+- Costs 20% less than regular S3 Staandard-IA 
+- Great for long-lived, infrequently accessed, non-critical data. 
+- 99.9% Availability
+- 99.999999999% (11 9's) Durability
+
+4. S3 Intelligent-Tiering
+- 2 Tiers - Frequent and Infrequent Access :- Automatically moves our data to most cost-effective tier based on how frequently we access each object. 
+- 99.99% Availability
+- 99.999999999% (11 9's) Durability
+- Optimizes cost :- montly fee of $0.0025 per 1,000 objects
+
+5. Glacier and Glacier Deep Archive
+- We pay each time we access our data.
+- Use only for archiving data
+- Glacier is cheap storage
+- Optimize for data that is very infrequently accssed. 
+- 3 Glaier Options :-  
+    * Glacier Instant Retrieval :- Provides long-term data archiving with instant retrieval time for your data.  
+    * Glacier Flexible Retrival :- Ideal storage class for archieve data that does not require immediate access but needs the flexibility to retrieve large sets of data at no cost, such as backup or disaster recovery use cases. Can be minutes or up to 12 hours. 
+    * Glacier Deep Archive :- Cheapest storage class and designed for customers that retain data sets for 7-10 years or longer to meet customer needs and regulatory compliance requirements. The standard retrieval time is 12 hours, and the bulk retrival time is 48 hours. 
+- 99.99% Availability 
+- 99.999999999% (11 9's) Durability
+
+**S3 Storage class cost High to low**  
+S3 Standard  
+S3 Intelligent-Tiering  
+S3 Standard-infrequent Access  
+S3 One Zone-Infrequent Access  
+
+## Lifecycle Management with S3 
+Lifecycle management automates moving your objects between the different storage tiers, thereby maximizing cost effectiveness.  
+
+**Combining Lifecycle management with versioning**   
+We can use lifecycle management to move different versions of objects to different storage tiers.  
+
+**Steps to enable Lifecycle management**    
+Step 1 :- Enable versioning   
+Step 2 :- Go to management section of Bucket   
+Step 3 :- Click on create Lifecycle rules.   
+Step 4 :- Give Lifecycle rule name, choose rule scope, Select Lifecycle rule actions.   
+Step 5 :- To move between storage clsses, select "move current versions of objects between storage classes"   
+Step 6 :- Add transistion rules   
+Step 7 :- Click create rule.   
+
