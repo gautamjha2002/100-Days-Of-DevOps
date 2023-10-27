@@ -196,3 +196,51 @@ Step 3 :- click on internet gatway just created and then click on Actions and th
 Step 4 :- Select the VPC and click on Attach Internet Gateway
 ![Attach IGW](Assets/15.png)  
 
+# Create Route table 
+
+Step 1 :- Go to route table console and click on create route table 
+![create route table](Assets/16.png) 
+
+Step 2 :- Give name to route table and select the vpc to attach with then click on create route table 
+![describe route table](Assets/17.png)  
+
+Route table created  
+![created route table](Assets/18.png)  
+
+As same like this create as much route tabe you want.  
+
+Step 3 :- Edit pubic route table select theroute table and click on edit routes.
+![edit public route table](Assets/19.png)  
+
+Step 4 :- click on add route, in target section select internet gateway and slect the internet gateway to bind with i, then click on save changes 
+
+![add IGW](Assets/20.png)  
+
+Now as we see Internet gateway is binded with Route table.
+![bind IGW](Assets/21.png)  
+
+Step 5 :- In the route table, go to subnet associations and on Subnets without explicit associations tabe click on edit subnet asociation. 
+
+![edit subnet](Assets/22.png)  
+
+Step 6 :- Select the subnet you want to associte with thee selected route table (basically public subnet for public route table with IGW, and private subnet for private route table) then click on save association.  
+![Select subnet](Assets/23.png)  
+
+# Enable DNS hostname 
+
+By enablig DNS hostname, we can launch our instances with hostname otherwise the instances will be created only with IP
+
+Step 1 :- Go to your VPCs console, select the VPC to enable DNS Hostname and click on Actions  
+
+![select VPC](Assets/24.png)
+
+Step 2 :- From actios click on edit vpc setting, and then click on enable DNS hostnames and click on save. 
+
+![enable hostnames](Assets/25.png)
+
+Now our public and private subnets are ready so we can now launch our instances in these subnets.  
+
+
+## Security Group Vs NACL
+![SG vs NACL](Assets/26.png)  
+
